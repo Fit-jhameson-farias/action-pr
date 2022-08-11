@@ -27,6 +27,8 @@ inputs:
     description: "Pull request reviewers users"
     required: false
 runs:
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.source-folder }}
     - ${{ inputs.destination-repo }}

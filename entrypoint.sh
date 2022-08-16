@@ -32,7 +32,6 @@ git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 
 echo "Adding git commit"
 
-if [ -n "$(git status --porcelain)" ]; then
 git add .
 git commit --message "Update from https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
 git push origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
@@ -41,7 +40,4 @@ gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
               -b $INPUT_DESTINATION_HEAD_BRANCH \
               -B $INPUT_DESTINATION_BASE_BRANCH \
               -H $INPUT_DESTINATION_HEAD_BRANCH \
-                  $PULL_REQUEST_REVIEWERS
-else
-    echo "  No changes, skipping $NAME"
-fi             
+                  $PULL_REQUEST_REVIEWERS            

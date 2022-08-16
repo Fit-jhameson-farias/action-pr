@@ -23,6 +23,9 @@ inputs:
     description: "The branch into which you want your code merged."
     required: false
     default: "main"
+  pull_request_reviewers:
+    description: "Pull request reviewers users"
+    required: true
 
 runs:
   using: "docker"

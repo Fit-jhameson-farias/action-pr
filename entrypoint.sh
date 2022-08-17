@@ -33,7 +33,7 @@ git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 # Teste
 git remote add main-repository https://github.com/Fit-jhameson-farias/main-repository.git
 git fetch main-repository --tags
-git merge --allow-unrelated-histories main-repository/main
+git merge -s ours --allow-unrelated-histories main-repository/main
 git remote remove main-repository
 #fim teste
 

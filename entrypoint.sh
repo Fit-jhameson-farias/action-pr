@@ -28,10 +28,10 @@ git config --global user.name "$INPUT_USER_NAME"
 #TESTE CLONAR REPO Destination e criar branch vazia
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_SEC"
 cd "$CLONE_SEC"
-cp -R $INPUT_SOURCE_FOLDER "$CLONE_SEC/$INPUT_DESTINATION_FOLDER"
 git checkout --orphan "BranchVazia" main
 git rm -rf .
 git clean -fdx
+cp -R $INPUT_SOURCE_FOLDER "$CLONE_SEC/$INPUT_DESTINATION_FOLDER"
 #FIM TESTE CLONAR REPO Destination
 
 #Copiar principal para o novo repository

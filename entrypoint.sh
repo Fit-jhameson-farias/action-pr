@@ -18,7 +18,7 @@ else
   PULL_REQUEST_REVIEWERS='-r '$INPUT_PULL_REQUEST_REVIEWERS
 fi
 CLONE_DIR=$(mktemp -d)
-CLONE_DIR_SEC=$(mktemp -d)
+# CLONE_DIR_SEC=$(mktemp -d)
 echo "Setting git variables"
 export GITHUB_TOKEN=$API_TOKEN_GITHUB
 git config --global user.email "$INPUT_USER_EMAIL"

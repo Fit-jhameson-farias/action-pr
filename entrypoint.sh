@@ -30,8 +30,7 @@ cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 cd "$CLONE_DIR"
 git status
 git checkout --orphan "$INPUT_DESTINATION_HEAD_BRANCH"
-git rm -rf 
-git clean -fdx
+git rm -r .
 
 echo "Adding git commit"
 git add .

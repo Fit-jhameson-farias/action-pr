@@ -39,7 +39,7 @@ CLONE_SEC=$(mktemp -d)
 git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_SEC"
-cd "$CLONE_sec"
+cd "$CLONE_SEC"
 git checkout -b "meAjude"
 git push -u origin "meAjude"
 #FIM TESTE CLONAR REPO Destination

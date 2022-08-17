@@ -18,27 +18,24 @@ else
   PULL_REQUEST_REVIEWERS='-r '$INPUT_PULL_REQUEST_REVIEWERS
 fi
 CLONE_DIR=$(mktemp -d)
-# CLONE_DIR_SEC=$(mktemp -d)
 echo "Setting git variables"
 export GITHUB_TOKEN=$API_TOKEN_GITHUB
 git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
-
 echo "Cloning destination git repository"
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
-# git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$CLONE_DIR_SEC"
 
 echo "Copying contents to git repo"-r $INPUT_USER_NAME
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cd "$CLONE_DIR"
+git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 
-# teste merge
+# Teste
 git remote add main-repository https://github.com/Fit-jhameson-farias/main-repository.git
 git fetch main-repository --tags
 git merge --allow-unrelated-histories main-repository/main
 git remote remove main-repository
-# fim teste
+#fim teste
 
 # echo "Adding git commit"
 # git add .

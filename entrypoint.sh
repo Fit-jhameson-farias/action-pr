@@ -29,23 +29,30 @@ git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$C
 # git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$CLONE_DIR_SEC"
 
 echo "Copying contents to git repo"-r $INPUT_USER_NAME
-git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cd "$CLONE_DIR"
 
-echo "Adding git commit"
-git add .
-if git status | grep -q "Changes to be committed"
-then
-  git commit --message "Update from https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
-  echo "Pushing git commit"
-  git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
-  echo "Creating a pull request"
-  gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
-               -b $INPUT_DESTINATION_HEAD_BRANCH \
-               -B $INPUT_DESTINATION_BASE_BRANCH \
-               -H $INPUT_DESTINATION_HEAD_BRANCH \
-                  $PULL_REQUEST_REVIEWERS
-else
-  echo "No changes detected"
-fi
+# teste merge
+git remote add main-repository https://github.com/Fit-jhameson-farias/main-repository.git
+git fetch main-repository --tags
+git merge --allow-unrelated-histories main-repository/main
+git remote remove main-repository
+# fim teste
+
+# echo "Adding git commit"
+# git add .
+# if git status | grep -q "Changes to be committed"
+# then
+#   git commit --message "Update from https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
+#   echo "Pushing git commit"
+#   git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
+#   echo "Creating a pull request"
+#   gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
+#                -b $INPUT_DESTINATION_HEAD_BRANCH \
+#                -B $INPUT_DESTINATION_BASE_BRANCH \
+#                -H $INPUT_DESTINATION_HEAD_BRANCH \
+#                   $PULL_REQUEST_REVIEWERS
+# else
+#   echo "No changes detected"
+# fi

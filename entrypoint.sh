@@ -33,6 +33,10 @@ git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git"
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 
+# git checkout --orphan gh-pages
+# git rm -rf .
+# git clean -fdx
+
 echo "Adding git commit"
 git add .
 if git status | grep -q "Changes to be committed"

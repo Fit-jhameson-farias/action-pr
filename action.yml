@@ -4,6 +4,9 @@ inputs:
   source_folder:
     description: "Source folder from origin"
     required: true
+  base_repo:
+    description: "repository"
+    required: true
   destination_repo:
     description: "Destination repository"
     required: true
@@ -32,6 +35,7 @@ runs:
   image: "Dockerfile"
   args:
     - ${{ inputs.source-folder }}
+    - ${{ inputs.base-repo }}
     - ${{ inputs.destination-repo }}
     - ${{ inputs.destination-folder }}
     - ${{ inputs.user-email }}

@@ -17,7 +17,7 @@ then
 else
   PULL_REQUEST_REVIEWERS='-r '$INPUT_PULL_REQUEST_REVIEWERS
 fi
-CLONE_DIR=$(mktemp -d)
+# CLONE_DIR=$(mktemp -d)
 echo "Setting git variables"
 export GITHUB_TOKEN=$API_TOKEN_GITHUB
 git config --global user.email "$INPUT_USER_EMAIL"
@@ -34,7 +34,7 @@ git clean -fdx
 #FIM TESTE CLONAR REPO Destination
 
 #Copiar principal para o novo repository
-cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+cp -R $INPUT_SOURCE_FOLDER "$CLONE_SEC/$INPUT_DESTINATION_FOLDER"
 git add .
 git commit --message "Agora vai"
 git push -u origin "BranchVazia"

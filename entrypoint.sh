@@ -28,10 +28,10 @@ git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$CLONE_DI
 echo "Copying contents to git repo"-r $INPUT_USER_NAME
 # cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 cd "$CLONE_DIR"
-git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
+git checkout -b "branchPrincipal"
 
 #teste
-git push -u origin "$INPUT_DESTINATION_HEAD_BRANCH"
+git push -u origin "branchPrincipal"
 #fim teste
 
 #TESTE CLONAR REPO Destination
@@ -44,14 +44,21 @@ git checkout -b "meAjude"
 git push -u origin "meAjude"
 #FIM TESTE CLONAR REPO Destination
 
+#TESTE PR
+# gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
+#               -b $INPUT_DESTINATION_HEAD_BRANCH \
+#               -B $INPUT_DESTINATION_BASE_BRANCH \
+#               -H $INPUT_DESTINATION_HEAD_BRANCH \
+#                 $PULL_REQUEST_REVIEWERS
+gh pr create --base branchPrincipal             
+#FIM TESTE PR
 
-
-# # Teste
+# # Teste merge
 # git remote add main-repository https://github.com/Fit-jhameson-farias/main-repository.git
 # git fetch main-repository --tags
 # git merge --allow-unrelated-histories main-repository/main
 # git remote remove main-repository
-# #fim teste
+# #fim teste merge
 
 # echo "Adding git commit"
 # git add .

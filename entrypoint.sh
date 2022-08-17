@@ -35,7 +35,7 @@ git clean -fdx
 #FIM TESTE CLONAR REPO Destination
 
 #Copiar principal para o novo repository
-touch README.md
+touch "README.md"
 git add .
 git commit --message "Agora vai"
 git push -u origin "BranchVazia"

@@ -29,8 +29,9 @@ echo "Copying contents to git repo"-r $INPUT_USER_NAME
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 cd "$CLONE_DIR"
 git status
-git checkout --orphan "$INPUT_DESTINATION_HEAD_BRANCH"
+git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 git rm -r .
+cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 
 echo "Adding git commit"
 git add .

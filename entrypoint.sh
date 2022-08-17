@@ -22,14 +22,17 @@ echo "Setting git variables"
 export GITHUB_TOKEN=$API_TOKEN_GITHUB
 git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
+
 echo "Cloning destination git repository"
-# git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
-# git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_SOURCE_FOLDER.git" "$CLONE_DIR"
-git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$CLONE_DIR"
+git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
+
 echo "Copying contents to git repo"-r $INPUT_USER_NAME
+
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+
 cd "$CLONE_DIR"
-# git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
+git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$CLONE_DIR"
+git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 
 echo "Adding git commit"
 git add .

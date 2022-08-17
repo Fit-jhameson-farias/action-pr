@@ -26,10 +26,11 @@ echo "Cloning destination git repository"
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 
 echo "Copying contents to git repo"-r $INPUT_USER_NAME
-cd "$CLONE_DIR"
-git checkout --orphan "$INPUT_DESTINATION_HEAD_BRANCH"
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-git rm -rf .
+cd "$CLONE_DIR"
+git status
+git checkout --orphan "$INPUT_DESTINATION_HEAD_BRANCH"
+git rm -rf 
 git clean -fdx
 
 echo "Adding git commit"

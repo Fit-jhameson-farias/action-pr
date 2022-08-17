@@ -27,15 +27,14 @@ echo "Cloning destination git repository"
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 cd "$CLONE_DIR"
 
-echo "Cloning base repository"
-git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" 
+# echo "Cloning base repository"
+# git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" 
 
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
-
+git checkout --orphan "$INPUT_DESTINATION_HEAD_BRANCH"
 # git checkout --orphan gh-pages
-# git rm -rf .
-# git clean -fdx
+git rm -rf .
+git clean -fdx
 
 echo "Adding git commit"
 git add .

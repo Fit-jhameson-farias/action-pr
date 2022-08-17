@@ -45,10 +45,10 @@ git push -u origin "meAjude"
 #FIM TESTE CLONAR REPO Destination
 
 #TESTE PR
-gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
-              -b $INPUT_DESTINATION_HEAD_BRANCH \
+gh pr create -t meAjude \
+              -b meAjude \
               -B branchPrincipal \
-              -H $INPUT_DESTINATION_HEAD_BRANCH \
+              -H meAjude \
                 $PULL_REQUEST_REVIEWERS
 # gh pr create -B branchPrincipal -t "algo" -b "algo"           
 #FIM TESTE PR

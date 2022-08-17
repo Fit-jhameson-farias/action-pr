@@ -34,6 +34,18 @@ git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 git push -u origin "$INPUT_DESTINATION_HEAD_BRANCH"
 #fim teste
 
+#TESTE CLONAR REPO Destination
+CLONE_SEC=$(mktemp -d)
+git config --global user.email "$INPUT_USER_EMAIL"
+git config --global user.name "$INPUT_USER_NAME"
+git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_SEC"
+cd "$CLONE_sec"
+git checkout -b "meAjude"
+git push -u origin "meAjude"
+#FIM TESTE CLONAR REPO Destination
+
+
+
 # # Teste
 # git remote add main-repository https://github.com/Fit-jhameson-farias/main-repository.git
 # git fetch main-repository --tags

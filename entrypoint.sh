@@ -31,10 +31,11 @@ cd "$CLONE_SEC"
 git checkout --orphan "BranchVazia" main
 git rm -rf .
 git clean -fdx
-cp -R $INPUT_SOURCE_FOLDER "$CLONE_SEC/$INPUT_DESTINATION_FOLDER"
+# cp -R $INPUT_SOURCE_FOLDER "$CLONE_SEC/$INPUT_DESTINATION_FOLDER"
 #FIM TESTE CLONAR REPO Destination
 
 #Copiar principal para o novo repository
+touch README.md
 git add .
 git commit --message "Agora vai"
 git push -u origin "BranchVazia"

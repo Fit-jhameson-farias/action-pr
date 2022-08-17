@@ -30,6 +30,7 @@ git clone -b main "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$
 
 echo "Copying contents to git repo"-r $INPUT_USER_NAME
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
+git config --global --add safe.directory /github/workspace
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 cd "$CLONE_DIR"
 

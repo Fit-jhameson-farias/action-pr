@@ -25,7 +25,7 @@ inputs:
     default: "main"
   pull_request_reviewers:
     description: "Pull request reviewers users"
-    required: true
+    required: false
 
 runs:
   using: "docker"

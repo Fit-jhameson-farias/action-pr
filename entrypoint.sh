@@ -18,6 +18,7 @@ else
   PULL_REQUEST_REVIEWERS='-r '$INPUT_PULL_REQUEST_REVIEWERS
 fi
 # CLONE_DIR=$(mktemp -d)
+CLONE_SEC=$(mktemp -d)
 echo "Setting git variables"
 export GITHUB_TOKEN=$API_TOKEN_GITHUB
 git config --global user.email "$INPUT_USER_EMAIL"
@@ -25,16 +26,15 @@ git config --global user.name "$INPUT_USER_NAME"
 # echo "Cloning destination git repository"
 
 #TESTE CLONAR REPO Destination e criar branch vazia
-CLONE_SEC=$(mktemp -d)
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_SEC"
 cd "$CLONE_SEC"
+cp -R $INPUT_SOURCE_FOLDER "$CLONE_SEC/$INPUT_DESTINATION_FOLDER"
 git checkout --orphan "BranchVazia" main
 git rm -rf .
 git clean -fdx
 #FIM TESTE CLONAR REPO Destination
 
 #Copiar principal para o novo repository
-cp -R $INPUT_SOURCE_FOLDER "$CLONE_SEC/$INPUT_DESTINATION_FOLDER"
 git add .
 git commit --message "Agora vai"
 git push -u origin "BranchVazia"

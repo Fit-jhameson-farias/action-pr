@@ -30,8 +30,8 @@ echo "Copying contents to git repo"-r $INPUT_USER_NAME
 # cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 git config --global --add safe.directory '*'
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
-rm -rfv *
 cd "$CLONE_DIR"
+rm -rfv *
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 # git rm -rf .
 

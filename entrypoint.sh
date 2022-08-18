@@ -33,7 +33,7 @@ git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$C
 
 git config --global --add safe.directory '*' # informa que é um diretório seguro
 
-rm -rfv "$CLONE_DIR"/*
+rm -rfv "$CLONE_DIR"/* #remove os arquivos antigos do repositorio destino
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cp -Rv $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 

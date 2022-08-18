@@ -29,7 +29,7 @@ echo "Copying contents to git repo"-r $INPUT_USER_NAME
 # cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 cd "$CLONE_DIR"
-git checkout --orphan "$INPUT_DESTINATION_HEAD_BRANCH"
+git checkout teste
 # git rm -rf .
 
 echo "Adding git commit"
@@ -38,12 +38,12 @@ if git status | grep -q "Changes to be committed"
 then
   git commit --message "Update from https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
   echo "Pushing git commit"
-  git push -u origin HEAD:$INPUT_DESTINATION_HEAD_BRANCH
+  git push -u origin HEAD:teste
   echo "Creating a pull request"
-  gh pr create -t $INPUT_DESTINATION_HEAD_BRANCH \
-               -b $INPUT_DESTINATION_HEAD_BRANCH \
+  gh pr create -t teste \
+               -b teste \
                -B $INPUT_DESTINATION_BASE_BRANCH \
-               -H $INPUT_DESTINATION_HEAD_BRANCH \
+               -H teste \
                   $PULL_REQUEST_REVIEWERS
 else
   echo "No changes detected"

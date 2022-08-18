@@ -28,7 +28,7 @@ git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$C
 echo "Copying contents to git repo"-r $INPUT_USER_NAME
 # cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 # cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-git config --global --add safe.directory /tmp
+git config --global --add safe.directory *
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 rm -rfv *
 cd "$CLONE_DIR"

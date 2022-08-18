@@ -40,7 +40,7 @@ cd "$CLONE_DIR"
 rm -rfv "$CLONE_DIR"/*
 # echo "Mostra os arquivs de $INPUT_SOURCE_FOLDER"
 # ls $INPUT_SOURCE_FOLDER
-cp -Rv $CLONE_SEC "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+cp -Rv "$CLONE_SEC/$INPUT_BASE_REPO" "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 # git rm -rf .
 
 echo "Adding git commit"

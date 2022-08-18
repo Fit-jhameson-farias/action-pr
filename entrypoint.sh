@@ -17,31 +17,28 @@ then
 else
   PULL_REQUEST_REVIEWERS='-r '$INPUT_PULL_REQUEST_REVIEWERS
 fi
-CLONE_DIR=$(mktemp -d)
-CLONE_SEC=$(mktemp -d)
+
+CLONE_DIR=$(mktemp -d) # representação para o repositório destino
+CLONE_SEC=$(mktemp -d) # representação para o repositório base
+
 echo "Setting git variables"
 export GITHUB_TOKEN=$API_TOKEN_GITHUB
 git config --global user.email "$INPUT_USER_EMAIL"
 git config --global user.name "$INPUT_USER_NAME"
-echo "Clonando repositório!"
+
+echo "Clonando os repositórios!"
+
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$CLONE_SEC"
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
 
-echo "Copying contents to git repo"-r $INPUT_USER_NAME
-# cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-# cp -R $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-git config --global --add safe.directory '*'
-echo "Mostra os arquivs de $INPUT_SOURCE_FOLDER"
-ls $INPUT_SOURCE_FOLDER
-cp -Rv $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-ls $INPUT_SOURCE_FOLDER
-git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
-# cd "$CLONE_DIR"
+git config --global --add safe.directory '*' # informa que é um diretório seguro
+
 rm -rfv "$CLONE_DIR"/*
-# echo "Mostra os arquivs de $INPUT_SOURCE_FOLDER"
-# ls $INPUT_SOURCE_FOLDER
-cp -Rv "$CLONE_SEC/$INPUT_BASE_REPO"/* "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
-# git rm -rf .
+git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
+cp -Rv $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+
+# cd "$CLONE_DIR"
+# cp -Rv "$CLONE_SEC/$INPUT_BASE_REPO"/* "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 
 echo "Adding git commit"
 git add .

@@ -38,8 +38,8 @@ ls $INPUT_SOURCE_FOLDER
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cd "$CLONE_DIR"
 rm -rfv "$CLONE_DIR"/*
-echo "Mostra os arquivs de $INPUT_SOURCE_FOLDER"
-ls $INPUT_SOURCE_FOLDER
+# echo "Mostra os arquivs de $INPUT_SOURCE_FOLDER"
+# ls $INPUT_SOURCE_FOLDER
 cp -Rv $CLONE_SEC "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 # git rm -rf .
 

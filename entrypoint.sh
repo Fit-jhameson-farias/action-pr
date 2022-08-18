@@ -31,10 +31,10 @@ echo "Copying contents to git repo"-r $INPUT_USER_NAME
 git config --global --add safe.directory '*'
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 cd "$CLONE_DIR"
-rm -rfv *
+rm -rfv "$CLONE_DIR"/*
 touch arquivo.txt
 ls
-mv -Rv $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+cp -Rv $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 # git rm -rf .
 
 echo "Adding git commit"

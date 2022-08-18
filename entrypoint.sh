@@ -34,7 +34,7 @@ cd "$CLONE_DIR"
 rm -rfv *
 touch arquivo.txt
 ls
-cp -Rv $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+mv -Rv $INPUT_SOURCE_FOLDER "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 # git rm -rf .
 
 echo "Adding git commit"

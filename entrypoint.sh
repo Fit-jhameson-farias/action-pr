@@ -19,6 +19,7 @@ else
 fi
 
 CLONE_DIR=$(mktemp -d) # representação para o repositório destino
+CLONE_SEC=$(mktemp -d) # representação para o repositório base
 
 echo "Setting git variables"
 export GITHUB_TOKEN=$API_TOKEN_GITHUB
@@ -28,11 +29,12 @@ git config --global user.name "$INPUT_USER_NAME"
 echo "Clonando os repositórios!"
 
 git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_DESTINATION_REPO.git" "$CLONE_DIR"
+git clone "https://$API_TOKEN_GITHUB@github.com/$INPUT_BASE_REPO.git" "$CLONE_SEC"
 
 git config --global --add safe.directory '*' # informa que é um diretório seguro
 rm -rfv "$CLONE_DIR"/* #remove os arquivos antigos do repositorio destino
 
-cp -Rv "$INPUT_SOURCE_FOLDER" "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
+cp -Rv "$CLONE_SEC/$INPUT_SOURCE_FOLDER" "$CLONE_DIR/$INPUT_DESTINATION_FOLDER"
 cd "$CLONE_DIR"
 git checkout -b "$INPUT_DESTINATION_HEAD_BRANCH"
 ls "$CLONE_DIR"
